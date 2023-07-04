@@ -14,6 +14,15 @@ describe("Editar nombre o apellido de contactos", () => {
 });
 
 describe("Editar email de los contactos para actualizarlos", () => {
+  test("Luego de editar el email, debe aparecer actualizado", ()=>{
+    const contacto = contactos[0]
+    const res = editarEmail(contacto.id, "migueldiaz@gmail.com");
+    expect(contacto.email).toBe("migueldiaz@gmail.com")
+  })
+  test("Debe de incluir '@' y '.com'", () =>{
+    const contacto = contactos [0]
+    const res = editarEmail(contacto.id);
+  })
 
 
 
