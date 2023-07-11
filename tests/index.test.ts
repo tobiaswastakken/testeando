@@ -1,4 +1,3 @@
-import {editarNombre} from "../src/editarContacto";
 import {contactos} from "../src/contactos"
 
 describe("Editar nombre o apellido de contactos", () => {
@@ -36,7 +35,7 @@ describe('Agregar nuevos contactos a la lista', () => {
   test('Al agregar un contacto a la lista, no debe de ser identico a otro contacto', () => {
     const contacto = contactos[0]
     const res = agregarContacto (contacto, {
-      id: 1,
+        id:999,
         first_name: "Miguel",
         last_name: "Sanchez",
         email: "miguelsanchez@google.es",
@@ -45,9 +44,17 @@ describe('Agregar nuevos contactos a la lista', () => {
     })
      expect(res).toBe(true)
    });
-
-   
-});
+  test('No se puede crear un contacto sin ninguna informacion en sus campos', () => {
+    const res = agregarContacto({
+      id :"",
+      first_name: "",
+      last_name: "",
+      email: "",
+      gender: "",
+      ip_address: "",
+    })
+    expect(res).toBeNull()
+  });
 });
 
 
