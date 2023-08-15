@@ -20,19 +20,20 @@ import {editarEmail} from "../src/editarEmail"
  describe("Editar email de los contactos para actualizarlos", () => {
    test("Luego de editar el email, debe aparecer actualizado", ()=>{
      const contacto = contactos[0] 
-     const com = ".com"
-     const arroba = "@"
-     const res: Contacto[] = editarEmail(contacto.id, "migueldiaz@gmail.com", contactos, com, arroba);
+     const res: Contacto[] = editarEmail(contacto.id, "migueldiaz@gmail.com", contactos);
      expect(res[0].email).toBe("migueldiaz@gmail.com")
    })
+
+   test("Luego de editar el email, debe aparecer actualizado", ()=>{
+    
+    const contactos_to_test = [contactos[0] ]
+    const res: Contacto[] = editarEmail(5, "migueldiaz@gmail.com", contactos);
+    expect(res[0].email).not.toBe("migueldiaz@gmail.com")
+  })
+ 
+  
  })
-    test("Debe de incluir '@' y '.com'", () =>{ 
-      const contacto = contactos[0]
-      const com = ".com"
-      const arroba = "@"
-      const res = editarEmail(contacto.id,contacto.email,contactos,com, arroba);
-      expect(res).toBe(true);
-    });
+    
 
 
 //  describe('Agregar nuevos contactos a la lista', () => {
