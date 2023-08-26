@@ -1,16 +1,28 @@
 import { Contacto, contactos } from "src/contactos";
 
 const editarNombre = (id: number, nombre: string, lista: Contacto[]) => {
-  return lista.map((contacto) => {
-    if (contacto.id !== id) {
-      throw ("No existe el contacto");
+  const contactosActualizados = lista.map((contacto) => {
+    if(contacto.id === id) {
+      return {
+        ...contacto,
+        first_name: nombre,
+      };
     }
     
-    return {
-      ...contacto,
-      first_name: contacto.id === id ? nombre : contacto.first_name,
-    };
+    return contacto;
   });
+
+  const contactoEncontrado = contactosActualizados.find((contacto) => contacto.id === id);
+
+  if (!contactoEncontrado) {
+    throw new Error("No existe el contacto");
+  }
+
+  return contactosActualizados;
 };
+
+
+
+
 
 export { editarNombre };
